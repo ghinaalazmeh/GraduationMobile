@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "253656148946",
+    "project_id": "firstproject-787",
+    "storage_bucket": "firstproject-787.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253656148946:android:5c74f66fc3415a6a7a760b",
+        "android_client_info": {
+          "package_name": "com.example.graduation_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdv2kIUAcaXNYjj5iIQOEaVTmR2Vl2e0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253656148946:android:a016e72f27a607a17a760b",
+        "android_client_info": {
+          "package_name": "com.example.test_nirebase_notifications"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdv2kIUAcaXNYjj5iIQOEaVTmR2Vl2e0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
