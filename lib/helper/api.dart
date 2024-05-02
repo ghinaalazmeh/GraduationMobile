@@ -16,8 +16,7 @@ class Api {
 
     http.Response response = await http.get(uri, headers: headers);
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      return jsonDecode(response.body)?['body']?['data'] ??
-          jsonDecode(response.body)?['body'];
+      return jsonDecode(response.body);
     } else {
       throw HttpException('Failed to get data',
           statusCode: response.statusCode, uri: uri);

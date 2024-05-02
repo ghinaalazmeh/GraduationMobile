@@ -43,26 +43,32 @@ class User implements HasId {
       this.password,
       this.passwordConfirmation});
 
-factory User.fromJson(Map<String, dynamic> json) {
-  return User(
-    id: json['id'] ?? '',
-    email: json['email'] ?? '',
-    name: json['name'] ?? '',
-    lastName: json['last_name'] ?? '',
-    emailVerifiedAt: json['email_verified_at'] != null
-        ? DateTime.parse(json['email_verified_at'])
-        : null,
-    ruleId: json['rule_id'] != null ? int.tryParse(json['rule_id']) : 0, 
-    phone: json['phone'] ?? '',
-    address: json['address'] ?? '',
-    atWork: json['at_work'] != null ? int.parse(json['at_work']) : 0, 
-    createdAt: DateTime.parse(json['created_at'] ?? DateTime.now().toString()), 
-    updatedAt: DateTime.parse(json['updated_at'] ?? DateTime.now().toString()), 
-    devices: (json['devices'] as List<dynamic>?)
-        ?.map((deviceData) => Device.fromJson(deviceData))
-        .toList() ?? [],
-  );
-}
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'] ?? '',
+      email: json['email'] ?? '',
+      name: json['name'] ?? '',
+      lastName: json['last_name'] ?? '',
+      emailVerifiedAt: json['email_verified_at'] != null
+          ? DateTime.parse(json['email_verified_at'])
+          : null,
+      ruleId: json['rule_id'] != null
+          ? int.tryParse(json['rule_id'].toString())
+          : 0,
+      phone: json['phone'] ?? '',
+      address: json['address'] ?? '',
+      atWork:
+          json['at_work'] != null ? int.parse(json['at_work'].toString()) : 0,
+      createdAt: DateTime.parse(
+          json['created_at']?.toString() ?? DateTime.now().toString()),
+      updatedAt: DateTime.parse(
+          json['updated_at']?.toString() ?? DateTime.now().toString()),
+      devices: (json['devices'] as List<dynamic>?)
+              ?.map((deviceData) => Device.fromJson(deviceData))
+              .toList() ??
+          [],
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
