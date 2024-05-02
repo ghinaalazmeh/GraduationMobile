@@ -46,7 +46,7 @@ class AuthController {
       await Firebase.initializeApp(
           options: DefaultFirebaseOptions.currentPlatform);
       FirebaseMessaging messaging = FirebaseMessaging.instance;
-      String? fcmToken = "await messaging.getToken()";
+      String? fcmToken = await messaging.getToken();
       await prefs.setString('FcmToken', fcmToken!);
       await saveFcm(fcmToken);
       // emit(LoginState.success);
@@ -79,6 +79,9 @@ class AuthController {
       if (responseBody == null) {
         return false;
       }
+      final String token = responseBody['token'];
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', token);
       return true;
     } catch (e) {
       return false;
