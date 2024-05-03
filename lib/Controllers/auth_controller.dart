@@ -79,6 +79,9 @@ class AuthController {
       if (responseBody == null) {
         return false;
       }
+      final String token = responseBody['token'];
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', token);
       return true;
     } catch (e) {
       return false;

@@ -16,12 +16,18 @@ class CrudController<T extends HasId> {
   Future<List<T>?> getAll(Map<String, dynamic>? queryParams) async {
     try {
       String? table = getTable<T>();
-      final List<dynamic> response =
+      final Map<String, dynamic> response =
           await Api().get(path: 'api/$table', queryParams: queryParams);
-      final List<T> items =
-          response.map((itemData) => _fromJson<T>(itemData)).toList();
-      return items;
+      final body = response['body'];
+      if (body is List) {
+        final items = body.map((itemData) => _fromJson<T>(itemData)).toList();
+        return items.cast<T>(); 
+      } else {
+        print('Error: expected the body to be a List');
+        return null;
+      }
     } catch (e) {
+      print(e.toString());
       return null;
     }
   }
@@ -111,23 +117,23 @@ class CrudController<T extends HasId> {
     throw Exception('Unknown model type');
   }
 
-Map<String, dynamic> _toJson<T>(T item) {
+  Map<String, dynamic> _toJson<T>(T item) {
     if (item is User) {
-        return (item as User).toJson();
+      return (item as User).toJson();
     } else if (item is Device) {
-        return (item as Device).toJson();
+      return (item as Device).toJson();
     } else if (item is CompletedDevice) {
-        return (item as CompletedDevice).toJson();
+      return (item as CompletedDevice).toJson();
     } else if (item is Permission) {
-        return (item as Permission).toJson();
+      return (item as Permission).toJson();
     } else if (item is Service) {
-        return (item as Service).toJson();
+      return (item as Service).toJson();
     } else if (item is Order) {
-        return (item as Order).toJson();
+      return (item as Order).toJson();
     } else if (item is Customer) {
-        return (item as Customer).toJson();
+      return (item as Customer).toJson();
     }
 
     throw Exception('Unknown model type');
-}
+  }
 }

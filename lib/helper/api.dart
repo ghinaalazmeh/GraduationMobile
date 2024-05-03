@@ -16,7 +16,7 @@ class Api {
 
     http.Response response = await http.get(uri, headers: headers);
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      return jsonDecode(response.body)['body'];
+      return jsonDecode(response.body);
     } else {
       throw HttpException('Failed to get data',
           statusCode: response.statusCode, uri: uri);
@@ -38,7 +38,7 @@ class Api {
       http.Response response =
           await http.post(uri, body: body, headers: headers);
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        return jsonDecode(response.body)['body'];
+        return jsonDecode(response.body)?['body'];
       } else {
         // It's better to throw a custom exception here
         throw HttpException('Failed to post data',
@@ -65,7 +65,7 @@ class Api {
       http.Response response =
           await http.put(uri, body: body, headers: headers);
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        return jsonDecode(response.body)['body'];
+        return jsonDecode(response.body)?['body'];
       } else {
         throw HttpException('Failed to update data',
             statusCode: response.statusCode, uri: uri);
